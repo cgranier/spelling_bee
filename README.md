@@ -1,6 +1,8 @@
 # spelling_bee
 ## Find solutions to the NYT's Spelling Bee puzzle.
 
+PUZZLE: https://www.nytimes.com/puzzles/spelling-bee
+
 ### INPUT:
 
 letters = the 7 letters in the day's puzzle

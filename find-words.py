@@ -16,8 +16,8 @@ def find_words(letters, required_letter):
                     words.append(word)
     return words
 
-letters = set("HNEPATHY")
-required_letter = 'Y'
+letters = set("PDWONEI")
+required_letter = 'I'
 
 solution = find_words(letters, required_letter)
 # Sort the list by length (from longer to shorter) and the alphabetically for each length

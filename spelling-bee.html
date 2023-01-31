@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            background-color: lightblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .output {
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+    </style>
+    <title>Spelling Bee Puzzle</title>
+  </head>
+  <body>
+    <h1>Spelling Bee Puzzle</h1>
+    <form>
+      <label for="letters">Letters:</label>
+      <input type="text" id="letters" required>
+      <br>
+      <label for="required_letter">Required Letter:</label>
+      <input type="text" id="required_letter" required>
+      <br><br>
+      <button id="submit">Submit</button>
+    </form>
+    <br>
+    <div class="output" id="output"></div>
+
+    <script src="./collins.js"></script>
+    <script>
+      const collins = COLLINS;
+      const submit = document.getElementById("submit");
+      const output = document.getElementById("output");
+      submit.addEventListener("click", (event) => {
+        event.preventDefault();
+        const letters = document.getElementById("letters").value.toUpperCase();
+        const required_letter = document.getElementById("required_letter").value.toUpperCase();
+        const words = collins.filter(
+          (word) =>
+            word.length > 3 &&
+            [...word].every((c) => letters.includes(c)) &&
+            word.includes(required_letter)
+        );
+        const sorted_words = words.sort((a, b) => {
+          if (b.length === a.length) {
+            return a.localeCompare(b);
+          }
+          return b.length - a.length;
+        });
+        output.innerHTML = sorted_words.join("<br>");
+      });
+    </script>
+  </body>
+</html>
